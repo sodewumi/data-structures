@@ -12,7 +12,6 @@ z
             ])
     
     """
-
     houses = set()
 
     cohort_data = open(filename)
@@ -24,7 +23,6 @@ z
             houses.add(line[2])
 
     return houses
-print(unique_houses("cohort_data.txt"))
 
 def sort_by_cohort(filename):
     """TODO: Sort students by cohort.
@@ -42,9 +40,21 @@ def sort_by_cohort(filename):
     spring_15 = []
     tas = []
 
-    # Code goes here
+    cohort_data = open(filename)
 
+    for line in cohort_data:
+        line = line.rstrip().split("|")
+        if line[4] == "Winter 2015":
+            winter_15.append(line[0] + " " + line[1])
+        elif line[4] == "Spring 2015":
+            spring_15.append(line[0] + " " + line[1])
+
+        if line[3] not in tas and line[3] != "":
+            tas.append(line[3])
+
+    all_students.extend([winter_15, spring_15, tas])
     return all_students
+
 
 
 def students_by_house(filename):
@@ -75,7 +85,7 @@ def students_by_house(filename):
     # Code goes here
 
     return all_students
-
+print(sort_by_cohort("cohort_data.txt"))
 
 def all_students_tuple_list(filename):
     """TODO: Create a list of tuples of student data.
