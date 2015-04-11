@@ -3,7 +3,7 @@ def unique_houses(filename):
 
     Iterates over the cohort_data.txt file to look for all of the included house names
     and creates a set called 'houses' that holds those names.
-
+z
         ex. houses = set([ "Hufflepuff", 
                     "Slytherin", 
                     "Ravenclaw", 
@@ -15,10 +15,16 @@ def unique_houses(filename):
 
     houses = set()
 
-    # Code goes here
+    cohort_data = open(filename)
+
+    for line in cohort_data:
+        line = line.rstrip()
+        line = line.split("|")
+        if line[2] != "":
+            houses.add(line[2])
 
     return houses
-
+print(unique_houses("cohort_data.txt"))
 
 def sort_by_cohort(filename):
     """TODO: Sort students by cohort.
