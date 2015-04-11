@@ -86,8 +86,9 @@ def students_by_house(filename):
 
     for line in cohort_data:
         line = line.rstrip().split("|")
-        if line[4] != "Spring 2015" and line[4] != "Winter 2015" and line[4] != "":
-            tas.append(line[1])
+        if line[4] != "Spring 2015" and line[4] != "":
+            if line[4] != "Winter 2015":
+                tas.append(line[1])
         else:
             if line[2] == "Gryffindor":
                 gryffindor.append(line[1])
@@ -102,7 +103,7 @@ def students_by_house(filename):
     all_students = [hufflepuff, gryffindor, ravenclaw, slytherin, dumbledores_army, tas]
     return all_students
 
-print(students_by_house("cohort_data.txt"))
+
 
 def all_students_tuple_list(filename):
     """TODO: Create a list of tuples of student data.
@@ -118,10 +119,15 @@ def all_students_tuple_list(filename):
 
     student_list = []
 
-    # Code goes here
+    cohort_data = open(filename)
+
+    for line in cohort_data:
+        line = line.rstrip().split("|")
+        if line[4] == "Spring 2015" or line[4] == "Winter 2015":
+            student_list.append((line[0] + " " + line[1], line[2], line[3], line[4]))
 
     return student_list
-
+print(all_students_tuple_list("cohort_data.txt"))
 
 def find_cohort_by_student_name(student_list):
     """TODO: Given full name, return student's cohort.
