@@ -23,6 +23,7 @@ z
             houses.add(line[2])
 
     return houses
+print(unique_houses("cohort_data.txt"))
 
 def sort_by_cohort(filename):
     """TODO: Sort students by cohort.
@@ -136,7 +137,6 @@ def find_cohort_by_student_name(student_list):
     'Student not found.' when appropriate. """
 
     student_name = raw_input("Which student do you want to find?")
-    student_info = student_list
     the_student = None
 
     found = False
@@ -144,41 +144,21 @@ def find_cohort_by_student_name(student_list):
 
     # have to have the length of student info as a terminating condition if the 
     # name isn't found. 
-    while not found and cnt < len(student_info):
-        if student_info[cnt][0] == student_name:
-            the_student = student_info[cnt]
+    while not found and cnt < len(student_list):
+        if student_list[cnt][0] == student_name:
+            the_student = student_list[cnt]
             found = True
-
         cnt += 1
 
     if found:
         return the_student
     else:
         return "Student not found."
-print(find_cohort_by_student_name(all_students_tuple_list("cohort_data.txt")))
+# print(find_cohort_by_student_name(all_students_tuple_list("cohort_data.txt")))
 
 
 ##########################################################################################
 # Further Study Questions
-
-
-def find_name_duplicates(filename):
-    """TODO: Using set operations, make a set of student first names that have duplicates.
-
-    Iterates over the data to find any first names that exist across multiple cohorts. 
-    Uses set operations (set math) to create a set of these names. 
-    NOTE: Do not include staff -- or do, if you want a greater challenge. 
-
-       ex. duplicate_names = set(["Sarah", "Nicole"])
-
-    """
-
-    duplicate_names = set()
-
-    # Code goes here
-
-    return duplicate_names
-
 
 def find_house_members_by_student_name(student_list):
     """TODO: Create a function that, when given a name, returns everyone in
@@ -188,7 +168,16 @@ def find_house_members_by_student_name(student_list):
     when given a student's first and last name, returns students that are in both that
     student's cohort and that student's house."""
 
-    # Code goes here
+    student_name = raw_input("Which student do you want to find")
+    cnt = 0
+    found = False
+
+    while not found and cnt < len(student_list):
+        if student_name == student_list[cnt][0]:
+            # do something
+        else:
+            return "Student not found"
 
     return
+print(find_house_members_by_student_name(all_students_tuple_list("cohort_data.txt")))
 
