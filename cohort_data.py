@@ -125,9 +125,8 @@ def all_students_tuple_list(filename):
         line = line.rstrip().split("|")
         if line[4] == "Spring 2015" or line[4] == "Winter 2015":
             student_list.append((line[0] + " " + line[1], line[2], line[3], line[4]))
-
     return student_list
-print(all_students_tuple_list("cohort_data.txt"))
+# print(all_students_tuple_list("cohort_data.txt"))
 
 def find_cohort_by_student_name(student_list):
     """TODO: Given full name, return student's cohort.
@@ -136,9 +135,27 @@ def find_cohort_by_student_name(student_list):
     function that, given a first and last name, returns that student's cohort, or returns
     'Student not found.' when appropriate. """
 
-    # Code goes here
+    student_name = raw_input("Which student do you want to find?")
+    student_info = student_list
+    the_student = None
 
-    return "Student not found."
+    found = False
+    cnt = 0
+
+    # have to have the length of student info as a terminating condition if the 
+    # name isn't found. 
+    while not found and cnt < len(student_info):
+        if student_info[cnt][0] == student_name:
+            the_student = student_info[cnt]
+            found = True
+
+        cnt += 1
+
+    if found:
+        return the_student
+    else:
+        return "Student not found."
+print(find_cohort_by_student_name(all_students_tuple_list("cohort_data.txt")))
 
 
 ##########################################################################################
